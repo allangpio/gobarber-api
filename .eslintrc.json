@@ -1,48 +1,40 @@
 {
   "env": {
-    "es6": true
+    "es6": true,
+    "node": true
   },
   "extends": [
-    "plugin:react/recommended",
-    "airbnb",
+    "airbnb-base",
     "plugin:@typescript-eslint/recommended",
     "prettier/@typescript-eslint",
     "plugin:prettier/recommended"
   ],
   "globals": {
     "Atomics": "readonly",
-    "SharedArrayBuffer": "readonly",
-    "__DEV__": "readonly"
+    "SharedArrayBuffer": "readonly"
   },
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true
-    },
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
   "plugins": [
-    "react",
-    "react-hooks",
     "@typescript-eslint",
     "prettier"
   ],
   "rules": {
-    "prettier/prettier": "error",
-    "class-methods-use-this": "off",
+    "settings": {
+      "import/resolver": {
+        "typescript": {}
+      }
+    },
     "import/extensions": [
       "error",
       "ignorePackages",
       {
-        "ts": "never",
+        "ts": "never"
       }
     ],
     "prettier/prettier": "error"
-  },
-  "settings": {
-    "import/resolver": {
-      "typescript": {}
-    }
   }
 }
