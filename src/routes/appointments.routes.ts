@@ -4,37 +4,30 @@ import { parseISO } from 'date-fns';
 
 import AppointmentsRepository from '../repositores/AppointmentsRepository';
 import CreateAppointmentService from '../services/CreateAppointmentService';
-import ensureAuthenticated from '../middlewares/ensureAuthenticaded'
-
+import ensureAuthenticated from '../middlewares/ensureAuthenticaded';
 
 const appointmentsRouter = Router();
 
-appointmentsRouter.use(ensureAuthenticated)
-
+appointmentsRouter.use(ensureAuthenticated);
 
 appointmentsRouter.get('/', async (request, response) => {
-  const appointmentsRepository = getCustomRepository(AppointmentsRepository)
+  const appointmentsRepository = getCustomRepository(AppointmentsRepository);
   const appointments = await appointmentsRepository.find();
   return response.json(appointments);
 });
 
 appointmentsRouter.post('/', async (request, response) => {
-  try {
-    const { provider_id, date } = request.body;
+  const { provider_id, date } = request.body;
 
-    const parsedDate = parseISO(date);
+  const parsedDate = parseISO(date);
 
+  const createAppointment = new CreateAppointmentService();
+  const appointment = await createAppointment.execute({
+    provider_id,
+    date: parsedDate,
+  });
 
-    const createAppointment = new CreateAppointmentService();
-    const appointment = await createAppointment.execute({
-      provider_id,
-      date: parsedDate,
-    });
-
-    return response.json(appointment);
-  } catch (err) {
-    return response.status(400).json({ Error: err.message });
-  }
+  return response.json(appointment);
 });
 
 export default appointmentsRouter;
