@@ -23,6 +23,7 @@
     "prettier"
   ],
   "rules": {
+    "no-useless-constructor": "off",
     "settings": {
       "import/resolver": {
         "typescript": {}
@@ -36,8 +37,16 @@
       }
     ],
     "prettier/prettier": "error",
-    "@typescript/eslint/no-unused-var": ["error". {
-      "argsIgnorePattern" : "_"
-    }]
+    "@typescript/eslint/no-unused-var": [
+      "error". {
+        "argsIgnorePattern": "_"
+      }
+    ],
+    "@typescript-eslint/interface-name-prefix": [
+      "error",
+      {
+        "prefixWithI": "always"
+      }
+    ]
   }
 }
