@@ -4,7 +4,7 @@ import fs from 'fs';
 
 import uploadConfig from '../config/upload';
 import AppError from '../errors/AppError';
-import User from '../models/User';
+import User from '../modules/users/entities/User';
 
 interface Request {
   user_id: string;

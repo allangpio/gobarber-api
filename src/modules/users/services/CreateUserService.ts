@@ -1,4 +1,4 @@
-import User from '../models/User';
+import User from '../modules/users/entities/User';
 import { getRepository } from 'typeorm';
 import { hash } from 'bcryptjs';
 
